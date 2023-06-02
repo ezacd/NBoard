@@ -1,0 +1,18 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Отклик
+{% endblock title %}
+
+{% block content %}
+
+<h3><p style="text-align: left;"><strong><em>Пользователь:</em></strong></p></h3>
+<p style="text-align: left;">{{ detail_response.user }}</p>
+<h3><p style="text-align: left;"><strong><em>Текст:</em></strong></p></h3>
+<p style="text-align: left;">{{ detail_response.text }}</p>
+
+<button><a class="nav-link" href="{{ detail_response.id }}/delete"><span style="color: #ff0000;">Удалить</span></a></button>
+{% if not is_accept %}
+<button><a class="nav-link" href="/response/{{ detail_response.id }}/accept/"><span style="color: #008000;">Принять</span></a></button>
+{% endif %}
+{% endblock content %}

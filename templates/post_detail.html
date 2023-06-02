@@ -1,0 +1,48 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Подробно
+{% endblock title %}
+
+{% block content %}
+
+<h3><p style="text-align: left;"><strong><em>Заголовок:</em></strong></p></h3>
+<p style="text-align: left;">{{ post.header }}</p>
+<h3><p style="text-align: left;"><strong><em>Дата создания поста:</em></strong></p></h3>
+<p style="text-align: left;">{{ post.time }}</p>
+<h3><p style="text-align: left;"><strong><em>Категория:</em></strong></p></h3>
+<p style="text-align: left;">{{ post.category }}</p>
+<h3><p style="text-align: left;"><strong><em>Контент:</em></strong></p></h3>
+<p style="text-align: left;">{{ post.content|safe }}</p>
+<h3><p style="text-align: left;"><strong><em>Автор:</em></strong></p></h3>
+<p style="text-align: left;">{{ post.author }}</p>
+<p style="text-align: left;">&nbsp</p>
+
+{% if post.author == user %}
+<h3><p style="text-align: left;"><strong><em>Отклики:</em></strong></p></h3>
+{% if responses %}
+<table>
+    <tr>
+        <td>Пользователь</td>
+        <td>Текст</td>
+    </tr>
+
+    {% for response in responses %}
+    <tr>
+        <td><a class="nav-link" href="{% url 'detail_response' response.id %}">{{ response.user }}</a></td>
+        <td>{{ response.text }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% else %}
+<p style="text-align: left;">Откликов нет</p>
+{% endif %}
+<button><a class="nav-link" href="{{ post.id }}/delete"><span style="color: #ff0000;">Удалить</span></a></button>
+{% elif is_response %}
+<button><a class="nav-link" href="{{ post.id }}/response"><span style="color: #008000;">Откликнуться</span></a></button>
+{% endif %}
+
+
+{% endblock content %}
