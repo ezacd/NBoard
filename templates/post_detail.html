@@ -6,6 +6,8 @@
 
 {% block content %}
 
+{% load filters %}
+
 <h3><p style="text-align: left;"><strong><em>Заголовок:</em></strong></p></h3>
 <p style="text-align: left;">{{ post.header }}</p>
 <h3><p style="text-align: left;"><strong><em>Дата создания поста:</em></strong></p></h3>
@@ -13,7 +15,7 @@
 <h3><p style="text-align: left;"><strong><em>Категория:</em></strong></p></h3>
 <p style="text-align: left;">{{ post.category }}</p>
 <h3><p style="text-align: left;"><strong><em>Контент:</em></strong></p></h3>
-<p style="text-align: left;">{{ post.content|safe }}</p>
+<p style="text-align: left;">{{ post.content|make_left|safe }}</p>
 <h3><p style="text-align: left;"><strong><em>Автор:</em></strong></p></h3>
 <p style="text-align: left;">{{ post.author }}</p>
 <p style="text-align: left;">&nbsp</p>
